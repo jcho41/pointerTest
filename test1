@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+struct Student {
+	int id;
+	double grades[2];
+};
+
+/* Function Prototyping */
+
+//Pass a struct by value
+void displayPassbyValue(struct Student);
+
+//Pass a struct by address(or reference)
+void displayPassbyAddress(struct Student *);
+
+int main(void) {
+
+	struct Student st = { 12, {37,45} };
+
+	//Call pass by value 
+	displayPassbyValue(st);
+
+	//Call pass by address
+	displayPassbyAddress( &st );
+
+	return 0;
+}
+
+/* Function Implementation*/
+
+//Pass a struct by value
+void displayPassbyValue(struct Student xx) {
+
+	printf("Inside displayPassbyValue:\n");
+	printf("Student ID: %d\n", xx.id);
+	printf("Student MARKS1: %0.2lf\n", xx.grades[0]);
+	printf("Student MARKS2: %0.2lf\n\n", xx.grades[1]);
+
+}
+
+//Pass a struct by address(or reference)
+void displayPassbyAddress(struct Student * yy) {
+
+	printf("Inside displayPassbyAddress:\n");
+	printf("Student ID: %d\n", (*yy).id);
+
+	printf("Student MARKS1: %0.2lf\n", (*yy).grades[0]);
+
+    //See the difference between the previous Printf and the below printf 
+	//(*yy) against yy-> .Either of the conventions can be used here. 
+	
+	printf("Student MARKS2: %0.2lf\n", yy->grades[1]);
+
+}
